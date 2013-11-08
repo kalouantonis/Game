@@ -1,0 +1,1 @@
+add_library(Math STATIC vector2.cpp)
