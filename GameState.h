@@ -14,13 +14,15 @@ public:
     virtual void Init() = 0;
     virtual void Clean() = 0;
     
-    // Self explained, mandatory comments
-    virtual void Pause() = 0;
-    virtual void Resume() = 0;
+    // We'll use the same function for pausing and unpausing
+    virtual void pause() = 0;
     
-    // This thingy handles events and the other one updates the game state
-    void Events();
-    void Update(float deltatime);
+    virtual void onExit() = 0;
+    virtual void onPause() = 0;
     
-    void Draw();
+    // handle events, and update on specified cycles
+    virtual void Events();
+    virtual void update(float deltatime) = 0;
+    
+    ~GameState() {}
 }
