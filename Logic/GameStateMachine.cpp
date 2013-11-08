@@ -51,7 +51,6 @@ void GameStateMachine::clean()
 	for(unsigned int i = 0; i < m_gameStates.size(); ++i)
 	{
 		assert(m_gameStates.back()->onExit() != false);
-
 		// Remove item
 		delete m_gameStates.back();
 		m_gameStates.pop_back();
