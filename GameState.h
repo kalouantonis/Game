@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 
 // Make it abstract cuz we can't know fo' shizzle
@@ -13,7 +12,7 @@ public:
     
     // Init the stat(ment)
     virtual void Init() = 0;
-    virtual void Cleanup() = 0;
+    virtual void Clean() = 0;
     
     // Self explained, mandatory comments
     virtual void Pause() = 0;
@@ -21,7 +20,7 @@ public:
     
     // This thingy handles events and the other one updates the game state
     void Events();
-    void Update();
+    void Update(float deltatime);
     
     void Draw();
 }
