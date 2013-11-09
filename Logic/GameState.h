@@ -7,7 +7,7 @@
 class GameState
 {
 public:
-    GameState(std::string);
+    GameState();
     virtual ~GameState() {}
     
     // Init the stat(ment)
