@@ -50,6 +50,7 @@ public:
 	void quit() { m_bRunning = false; }
 	
 	SDL_Renderer* getRenderer() { return m_pRenderer; }
+	SDL_Window* getCurrentWindow() { return m_pWindow; }
 		
 	
 private:

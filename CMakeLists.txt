@@ -8,13 +8,17 @@ set(SOURCE
 )
 
 add_executable(game ${SOURCE})
-# Link my libraries
-target_link_libraries(game Utils)
-target_link_libraries(game GO)
 
 add_subdirectory(Utils)
 add_subdirectory(GO)
 add_subdirectory(Math)
+add_subdirectory(Input)
+# Link my libraries
+target_link_libraries(game Utils)
+target_link_libraries(game GO)
+target_link_libraries(game Math)
+target_link_libraries(game Input)
+
 
 
 # Use C++11

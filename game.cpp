@@ -19,6 +19,7 @@
 
 #include "game.h"
 #include "Utils/logger.h"
+#include "Input/inputhandler.h"
 
 using std::shared_ptr;
 
@@ -64,6 +65,9 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 		return false;
 	}
 	
+	// TODO: Add accesor
+	SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
+	
 	m_bRunning = true;
 	
 	return true;
@@ -76,13 +80,16 @@ void Game::update(float delta)
 
 void Game::render()
 {
-
+	SDL_RenderClear(m_pRenderer);
+	
+	// Present changes
+	SDL_RenderPresent(m_pRenderer);
 }
 
 
 void Game::handleEvents()
 {
-	
+	TheInputHandler::Instance().update();
 }
 
 void Game::clean()

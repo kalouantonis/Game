@@ -108,7 +108,9 @@ float Vector2::distSquared(const Vector2& other)
 // Operator overloads
 Vector2& Vector2::operator=(Vector2 rhs)
 {
-	std::swap(rhs);
+	this->x = rhs.x;
+	this->y = rhs.y;
+	
 	return *this;
 }
 
@@ -159,8 +161,6 @@ Vector2 operator*(Vector2 lhs, T scalar)
 	
 	return lhs;
 }
-
-// Comparison operators
 
 
 
