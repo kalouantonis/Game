@@ -11,12 +11,18 @@
 
 #include <stdexcept>
 
-TextureManager::TextureManager(SDL_Renderer* renderer)
-	: m_pRenderer(renderer)
+TextureManager::TextureManager()
+	: m_pRenderer(nullptr)
+{
+}
+
+void TextureManager::attachRenderer(SDL_Renderer* renderer)
 {
 	// Make sure we didn't receive an invalid renderer
 	if(renderer == nullptr)
 		throw std::runtime_error("Invalid renderer -- TextureManager::TextureManager");
+
+	m_pRenderer = renderer;
 }
 
 TextureManager::~TextureManager()

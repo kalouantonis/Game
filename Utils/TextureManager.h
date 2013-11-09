@@ -17,8 +17,21 @@
 
 class TextureManager {
 public:
-	TextureManager(SDL_Renderer* renderer = TheGame::Instance().getRenderer());
 	~TextureManager();
+
+	static TextureManager& Instance()
+	{
+		static TextureManager instance;
+
+		return instance;
+	}
+
+	/**
+	 * Attach SDL_Renderer for drawing. Must do this before calling other functions
+	 *
+	 * Throws std::runtime_error if renderer is invalid
+	 */
+	void attachRenderer(SDL_Renderer* renderer);
 
 	/**
 	 * Load item using SDL_Image library
@@ -47,6 +60,9 @@ public:
 	void clean();
 
 private:
+	TextureManager();
+	TextureManager(const TextureManager&) {}
+
 	std::map<std::string, SDL_Texture*> m_textures;
 
 	// Renderer reference
