@@ -52,6 +52,16 @@ SDL_Texture* TextureManager::get(const std::string& id)
 	return sought->second;
 }
 
+bool TextureManager::exists(const std::string& id)
+{
+	auto sought = m_textures.find(id);
+
+	if(sought == m_textures.end())
+		return false;
+
+	return true;
+}
+
 void TextureManager::remove(const std::string& id)
 {
 	// Use find to check for errors

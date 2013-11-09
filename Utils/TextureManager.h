@@ -48,6 +48,11 @@ public:
 	SDL_Texture* get(const std::string& id);
 
 	/**
+	 * Check if texture exists
+	 */
+	bool exists(const std::string& id);
+
+	/**
 	 * Removes an item from texture manager
 	 *
 	 * Throws std::logic_error if invalid item is accessed
