@@ -46,10 +46,12 @@ public:
 	void render();
 	void handleEvents();
 	
+	typedef std::unique_ptr<GameState> StatePtr;
+
 	/**
 	 * Used by API to initialize first state
 	 */
-	virtual std::unique_ptr<GameState> getStartState() = 0;
+	virtual StatePtr getStartState() = 0;
 
 	void clean();
 	
