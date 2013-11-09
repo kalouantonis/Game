@@ -1,1 +1,0 @@
-add_library(Utils STATIC timer.cpp logger.cpp)

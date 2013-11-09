@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
@@ -40,6 +39,9 @@ public:
 	
 	Vector2& operator*=(const Vector2& vec);
 	
+	template<typename T>
+	Vector2 operator*(T scalar) { return Vector2(this->x * scalar, this->y * scalar); }
+
 	// Asignment op
 	Vector2& operator=(Vector2 rhs);
 	
@@ -61,8 +63,8 @@ public:
 	float y;
 };
 
-template<typename T>
-Vector2 operator*(Vector2 lhs, T scalar);
+//template<typename T>
+//Vector2 operator*(Vector2 lhs, T scalar);
 
 Vector2 operator+(Vector2 lhs, const Vector2& rhs);
 Vector2 operator-(Vector2 lhs, const Vector2& rhs);

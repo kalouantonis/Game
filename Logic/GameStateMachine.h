@@ -6,6 +6,8 @@
 #include <memory>
 #include <vector>
 
+#include <Logic/GameState.h>
+
 // Queue like structure
 class GameStateMachine
 {
@@ -20,13 +22,13 @@ public:
 	// Clean all states, delete them. Once executed, your states will be gone
 	void clean();
 
-	void update();
+	void update(float delta);
 	void render();
 
 	~GameStateMachine();
 
 private:
-	std::vector<GameState*> m_gameStates;
+	std::vector<std::unique_ptr<GameState> > m_gameStates;
 };
 
 #endif

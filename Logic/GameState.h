@@ -1,28 +1,33 @@
+#ifndef _GAMESTATE_H_
+#define _GAMESTATE_H_
+
 #include <string>
 
 // Make it abstract cuz we can't know fo' shizzle
 class GameState
 {
-private:
-    std::string desc;
-    bool isPaused;
-  
 public:
     GameState(std::string);
+    virtual ~GameState() {}
     
     // Init the stat(ment)
     virtual void init() = 0;
     virtual void clean() = 0;
     
-    // We'll use the same function for pausing and unpausing
-    virtual void pause() = 0;
-    
-    virtual void onExit() = 0;
+    // When state is first entered
+    virtual bool onEnter() = 0;
+    // When state exits
+    virtual bool onExit() = 0;
+    // Pause event called
     virtual void onPause() = 0;
+    // Resume
+    virtual void onResume() = 0;
     
-    // handle events, and update on specified cycles
-    virtual void eventHandler();
     virtual void update(float deltatime) = 0;
-    
-    ~GameState() {}
-}
+
+    virtual void render() = 0;
+
+    virtual std::string getStateID() const = 0;
+};
+
+#endif

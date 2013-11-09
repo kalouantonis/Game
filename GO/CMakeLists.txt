@@ -1,1 +1,0 @@
-add_library(GO STATIC gameobject.cpp)

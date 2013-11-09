@@ -17,9 +17,9 @@
  *
  */
 
-#include "game.h"
-#include "Utils/logger.h"
-#include "Input/inputhandler.h"
+#include <game.h>
+#include <Utils/logger.h>
+#include <Input/InputHandler.h>
 
 using std::shared_ptr;
 
@@ -54,7 +54,7 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 		
 		return false;
 	}
-	log(DEBUG, "window creation success...");
+	log(DEBUG, "window creation success...\n");
 	
 	m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 	

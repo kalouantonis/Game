@@ -4,7 +4,8 @@
 
 void GameStateMachine::pushState(std::unique_ptr<GameState> pState)
 {
-	m_gameStates.push_back(pState);
+	m_gameStates.push_back(std::move(pState));
+
 	assert(m_gameStates.back()->onEnter() != false);
 }
 
@@ -14,7 +15,7 @@ void GameStateMachine::popState()
 	{
 		if(m_gameStates.back()->onExit())
 		{
-			delete m_gameStates.back();
+			//delete m_gameStates.back();
 			m_gameStates.pop_back();
 		}
 	}
@@ -33,14 +34,13 @@ void GameStateMachine::changeState(std::unique_ptr<GameState> pState)
 
 		if(m_gameStates.back()->onExit())
 		{
-			delete m_gameStates.back();
-
+			//delete m_gameStates.back();
 			m_gameStates.pop_back();
 		}
 	}
 
-	// push back our new state
-	m_gameStates.push_back(pState);
+	// push back our new state, move ownership
+	m_gameStates.push_back(std::move(pState));
 
 	// intialize it
 	assert(m_gameStates.back()->onEnter() != false);
@@ -52,17 +52,17 @@ void GameStateMachine::clean()
 	{
 		assert(m_gameStates.back()->onExit() != false);
 		// Remove item
-		delete m_gameStates.back();
+		//delete m_gameStates.back();
 		m_gameStates.pop_back();
 	}
 
 	m_gameStates.clear();
 }
 
-void GameStateMachine::update()
+void GameStateMachine::update(float delta)
 {
 	if(!m_gameStates.empty())
-		m_gameStates.back()->update();
+		m_gameStates.back()->update(delta);
 }
 
 void GameStateMachine::render()
