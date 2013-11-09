@@ -68,6 +68,8 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 	// TODO: Add accesor
 	SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
 	
+	m_gameStateMachine.changeState(std::move(getStartState()));
+
 	m_bRunning = true;
 	
 	return true;

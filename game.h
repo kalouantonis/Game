@@ -26,6 +26,7 @@
 #include <memory>
 
 #include <Logic/GameStateMachine.h>
+#include <Logic/GameState.h>
 
 class Game
 {
@@ -45,6 +46,11 @@ public:
 	void render();
 	void handleEvents();
 	
+	/**
+	 * Used by API to initialize first state
+	 */
+	virtual std::unique_ptr<GameState> getStartState() = 0;
+
 	void clean();
 	
 	bool isRunning() { return m_bRunning; }
