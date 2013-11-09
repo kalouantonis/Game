@@ -1,10 +1,10 @@
-#include "game.h"
-#include "Utils/timer.h"
+#include <game.h>
+#include <Utils/timer.h>
 
 #include <cstdlib>
 
 const unsigned short FPS = 60;
-const float DELAY_TIME = 1000.f / (float)FPS;
+const float DELAY_TIME = 1.f / (float)FPS;
 
 int main(int argc, char **argv) 
 {
