@@ -75,13 +75,15 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 
 void Game::update(float delta)
 {
-
+	m_gameStateMachine.update(delta);
 }
 
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
 	
+	m_gameStateMachine.render();
+
 	// Present changes
 	SDL_RenderPresent(m_pRenderer);
 }

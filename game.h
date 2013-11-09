@@ -25,6 +25,8 @@
 
 #include <memory>
 
+#include <Logic/GameStateMachine.h>
+
 class Game
 {
 public:
@@ -51,6 +53,8 @@ public:
 	
 	SDL_Renderer* getRenderer() { return m_pRenderer; }
 	SDL_Window* getCurrentWindow() { return m_pWindow; }
+
+	GameStateMachine& getGameStateMachine() { return m_gameStateMachine; }
 		
 	
 private:
@@ -60,7 +64,10 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	
+	GameStateMachine m_gameStateMachine;
+
 	bool m_bRunning;
+
 };
 
 typedef Game TheGame;
