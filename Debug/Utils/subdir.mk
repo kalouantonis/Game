@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Utils/TextureManager.cpp \
 ../Utils/logger.cpp \
 ../Utils/timer.cpp 
 
 OBJS += \
+./Utils/TextureManager.o \
 ./Utils/logger.o \
 ./Utils/timer.o 
 
 CPP_DEPS += \
+./Utils/TextureManager.d \
 ./Utils/logger.d \
 ./Utils/timer.d 
 
