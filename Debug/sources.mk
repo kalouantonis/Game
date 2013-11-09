@@ -25,6 +25,7 @@ C_UPPER_DEPS :=
 SUBDIRS := \
 . \
 Utils \
+Resources \
 Math \
 Logic \
 Input \

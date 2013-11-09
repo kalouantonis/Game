@@ -34,7 +34,7 @@ void InputHandler::initializeJoysticks()
 			log(ERROR, "joystick system init failed!!\n\tError:%s\n", SDL_GetError());
 			
 			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Joystick error!", 
-				"Failed to start joystick system!\nSee logs for details", TheGame::Instance().getCurrentWindow());
+				"Failed to start joystick system!\nSee logs for details", SharedGame::Instance().getCurrentWindow());
 		}
 	}
 
@@ -81,7 +81,7 @@ void InputHandler::update()
 	{
 		if(event.type == SDL_QUIT)
 		{
-			TheGame::Instance().quit();
+			SharedGame::Instance().quit();
 		}
 
 		// update the state of keys

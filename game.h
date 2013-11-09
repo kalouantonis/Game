@@ -70,6 +70,6 @@ private:
 
 };
 
-typedef Game TheGame;
+typedef Game SharedGame;
 
 #endif // GAME_H

@@ -91,7 +91,7 @@ void Game::render()
 
 void Game::handleEvents()
 {
-	TheInputHandler::Instance().update();
+	SharedInputHandler::Instance().update();
 }
 
 void Game::clean()

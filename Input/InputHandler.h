@@ -107,6 +107,6 @@ private:
 // TODO: Set dynamically
 const int JOYSTICKDEADZONE = 10000;
 
-typedef InputHandler TheInputHandler;
+typedef InputHandler SharedInputHandler;
 
 #endif
