@@ -33,6 +33,10 @@ TextureManager::~TextureManager()
 
 void TextureManager::load(const std::string& id, const std::string& filename)
 {
+	// Dont load using existing ID's
+	if(exists(id))
+		return;
+
 	SDL_Texture* tex = nullptr;
 	tex = IMG_LoadTexture(m_pRenderer, filename.c_str());
 
