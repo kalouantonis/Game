@@ -7,7 +7,6 @@
 class GameState
 {
 public:
-    GameState();
     virtual ~GameState() {}
     
     // Init the stat(ment)
