@@ -30,3 +30,5 @@ include_directories(${SDL2_INCLUDE_DIRS})
 target_link_libraries(game ${SDL2_LIBRARIES})
 
 install(TARGETS game RUNTIME DESTINATION bin)
+
+add_subdirectory(Logic)
