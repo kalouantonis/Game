@@ -31,7 +31,7 @@ class Sprite
     public:
         // Constructor with filename and size ( height, width);
         Sprite(SDL_Renderer*);
-        //Sprite(const std::string, const int, const int);
+        ~Sprite();
         
         void LoadImage(const std::string& filename);
         // Draw the sprite with the target window

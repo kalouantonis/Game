@@ -14,6 +14,11 @@ Sprite::Sprite(SDL_Renderer* renderer)
 		throw std::runtime_error("Sprite::Sprite -- Invalid renderer");
 }
 
+Sprite::~Sprite()
+{
+	Dispose();
+}
+
 void Sprite::LoadImage(const std::string& filename)
 {
     // Load texture from image
