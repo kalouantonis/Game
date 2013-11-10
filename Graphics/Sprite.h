@@ -23,7 +23,7 @@ class Sprite
         int m_height, m_width;
         Vector2 m_position;
 
-        bool m_bVisible, m_bAlive;
+        bool m_bVisible;
         
         SDL_Renderer *m_pRendTarget;
         SDL_Texture *m_pTexture;
@@ -38,8 +38,8 @@ class Sprite
         void Draw();
         void Dispose();
 
-        bool isAlive() { return m_bAlive; }
         bool isVisible() { return m_bVisible; }
+        void setVisible(bool visible) { m_bVisible = visible; }
         
         // Set height or width
         
