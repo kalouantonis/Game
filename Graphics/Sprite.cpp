@@ -2,10 +2,12 @@
 
 #include <stdexcept>
 
+#include <Resources/TextureManager.h>
+
 Sprite::Sprite(SDL_Renderer* renderer)
 	: m_height(0), m_width(0)
 	, m_position()
-	, m_bVisible(false)
+	, m_rotation(0)
 	, m_pRendTarget(renderer)
 	, m_pTexture(nullptr)
 	, m_dstRect()
@@ -28,8 +30,6 @@ void Sprite::loadImage(const std::string& filename)
     {
         throw std::runtime_error("Failed to load image: " + filename + "\n\t" + IMG_GetError());
     }
-
-    m_bVisible = true;
 }
 
 void Sprite::rotate(double rot)
@@ -49,16 +49,17 @@ void Sprite::draw()
 	m_dstRect.x = m_position.x;
 	m_dstRect.y = m_position.y;
 
-	if(m_bVisible)
-		SDL_RenderCopyEx(m_pRendTarget, m_pTexture, NULL, &m_dstRect, m_rotation, NULL, SDL_FLIP_NONE);
-
+	SDL_RenderCopyEx(m_pRendTarget, m_pTexture, NULL, &m_dstRect, m_rotation, NULL, SDL_FLIP_NONE);
 }
 
 void Sprite::dispose()
 {
 	if(m_pTexture)
+	{
 		SDL_DestroyTexture(m_pTexture);
 
-	m_bVisible = false;
+		// Set to null to keep things clean
+		m_pTexture = nullptr;
+	}
 }
 

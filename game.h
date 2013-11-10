@@ -28,6 +28,10 @@
 #include <Logic/GameStateMachine.h>
 #include <Logic/GameState.h>
 
+typedef std::unique_ptr<GameState> StatePtr;
+// Cheap hack to get an initial start state
+extern StatePtr g_startState;
+
 class Game
 {
 public:
@@ -46,12 +50,6 @@ public:
 	void render();
 	void handleEvents();
 	
-	typedef std::unique_ptr<GameState> StatePtr;
-
-	/**
-	 * Used by API to initialize first state
-	 */
-	virtual StatePtr getStartState() { return nullptr; };
 
 	void clean();
 	

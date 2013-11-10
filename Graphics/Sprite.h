@@ -14,8 +14,6 @@ class Sprite
         int m_height, m_width;
         Vector2 m_position;
         double m_rotation;
-
-        bool m_bVisible;
         
         SDL_Renderer *m_pRendTarget;
         SDL_Texture *m_pTexture;
@@ -30,13 +28,16 @@ class Sprite
         ~Sprite();
         
         void loadImage(const std::string& filename);
+
+        /**
+         * Can use instead of using load method
+         */
+        void setTexture(SDL_Texture* tex) { m_pTexture = tex; }
+
         // Draw the sprite with the target window
         void draw();
         void dispose();
 
-        bool isVisible() { return m_bVisible; }
-        void setVisible(bool visible) { m_bVisible = visible; }
-        
         // Set height or width
         void setHeight(int h) { m_height = h;}
         void setWidth(int w) { m_width = w; }

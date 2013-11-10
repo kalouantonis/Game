@@ -20,8 +20,10 @@
 #include <game.h>
 #include <Utils/logger.h>
 #include <Input/InputHandler.h>
+#include <Resources/TextureManager.h>
 
 using std::shared_ptr;
+#include <stdexcept>
 
 
 Game::Game()
@@ -65,10 +67,16 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 		return false;
 	}
 	
+	// Add renderer to texture manager
+	SharedTextureManager::Instance().attachRenderer(m_pRenderer);
+
 	// TODO: Add accesor
 	SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
 	
-	m_gameStateMachine.changeState(std::move(getStartState()));
+	if(!g_startState)
+		throw std::logic_error("Must declare start state");
+
+	m_gameStateMachine.changeState(std::move(g_startState));
 
 	m_bRunning = true;
 	
