@@ -13,6 +13,7 @@ RM := rm -rf
 -include Math/subdir.mk
 -include Logic/subdir.mk
 -include Input/subdir.mk
+-include Graphics/subdir.mk
 -include GO/subdir.mk
 -include subdir.mk
 -include objects.mk

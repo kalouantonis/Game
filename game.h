@@ -31,7 +31,7 @@
 class Game
 {
 public:
-    ~Game();
+    virtual ~Game();
 	
 	static Game& Instance()
 	{
@@ -51,7 +51,7 @@ public:
 	/**
 	 * Used by API to initialize first state
 	 */
-	virtual StatePtr getStartState() = 0;
+	virtual StatePtr getStartState() { return nullptr; };
 
 	void clean();
 	

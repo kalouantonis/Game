@@ -29,5 +29,6 @@ Resources \
 Math \
 Logic \
 Input \
+Graphics \
 GO \
 

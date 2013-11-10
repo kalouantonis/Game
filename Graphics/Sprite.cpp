@@ -1,35 +1,41 @@
 #include "Sprite.h"
 
-Sprite::Sprite(std::string name, int h, int w, SDL_Renderer *rend) : height(h), width(w),
-    filename(name), rendTarget(rend)
+#include <stdexcept>
+
+Sprite::Sprite(SDL_Renderer* renderer)
+	: m_height(0), m_width(0)
+	, m_position()
+	, m_bVisible(false)
+	, m_bAlive(true)
+	, m_pRendTarget(renderer)
+	, m_pTexture(nullptr)
 {
-    texture = NULL;
-
-    LoadImage(name);
-
-    this->posX() = 0;
-    this->posY() = 0;
-
+	if(renderer == nullptr)
+		throw std::runtime_error("Sprite::Sprite -- Invalid renderer");
 }
 
-void Sprite::LoadImage(std::string nm)
+void Sprite::LoadImage(const std::string& filename)
 {
     // Load texture from image
-    texture = IMG_LoadTexture(rendTarget, nm.c_str());
+    m_pTexture = IMG_LoadTexture(m_pRendTarget, filename.c_str());
     
-    if(!texture)
+    if(m_pTexture == nullptr)
     {
         std::cout << IMG_GetError() << "\n";
-    //    throw std::runtime_error("Failed to load image: ", + nm + IMG_GetError());
+        throw std::runtime_error("Failed to load image: " + filename + "\n\t" + IMG_GetError());
     }
+
+    m_bVisible = true;
 }
 
 void Sprite::Draw()
 {
-    SDL_RenderCopy(rendTarget, texture, NULL, NULL);
+	if(m_bAlive && m_bVisible)
+		SDL_RenderCopy(m_pRendTarget, m_pTexture, NULL, NULL);
 }
 
 void Sprite::Dispose()
 {
-    SDL_DestroyTexture(texture);
+	if(m_pTexture != nullptr)
+		SDL_DestroyTexture(m_pTexture);
 }
