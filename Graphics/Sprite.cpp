@@ -21,15 +21,19 @@ Sprite::~Sprite()
 	dispose();
 }
 
-void Sprite::loadImage(const std::string& filename)
+void Sprite::loadImage(const std::string& id, const std::string& filename)
 {
-    // Load texture from image
-    m_pTexture = IMG_LoadTexture(m_pRendTarget, filename.c_str());
-    
-    if(!m_pTexture)
-    {
-        throw std::runtime_error("Failed to load image: " + filename + "\n\t" + IMG_GetError());
-    }
+	// Load texture
+	SharedTextureManager::Instance().load(id, filename);
+
+	// Add texture to class
+	m_pTexture= SharedTextureManager::Instance().get(id);
+}
+
+void Sprite::loadImage(const std::string& id)
+{
+	// Error handling done in texture manager
+	m_pTexture = SharedTextureManager::Instance().get(id);
 }
 
 void Sprite::rotate(double rot)

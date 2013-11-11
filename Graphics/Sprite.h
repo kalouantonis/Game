@@ -7,6 +7,7 @@
 #include <string>
 
 #include <Math/vector2.h>
+#include <Graphics/Color.h>
 
 class Sprite
 {
@@ -15,6 +16,8 @@ class Sprite
         Vector2 m_position;
         double m_rotation;
         
+		Color m_color;
+
         SDL_Renderer *m_pRendTarget;
         SDL_Texture *m_pTexture;
 
@@ -22,12 +25,13 @@ class Sprite
         // one every draw loop
 		SDL_Rect m_dstRect;
 
+
     public:
-        // Constructor with filename and size ( height, width);
         Sprite(SDL_Renderer*);
         ~Sprite();
         
-        void loadImage(const std::string& filename);
+        void loadImage(const std::string& id, const std::string& filename);
+        void loadImage(const std::string& id);
 
         /**
          * Can use instead of using load method
@@ -60,6 +64,27 @@ class Sprite
          */
         void rotate(double rot);
         double getRotation() { return m_rotation; }
+
+        void setColor(const Color& col) { m_color = col; }
+        void setColor(Uint8 r, Uint8 g, Uint8 b)
+        {
+        	m_color.r = r;
+        	m_color.g = g;
+        	m_color.b = b;
+
+        	if(m_pTexture)
+				SDL_SetTextureColorMod(m_pTexture, r, g, b);
+        }
+        void setAlpha(Uint8 a)
+        {
+        	m_color.a = a;
+
+        	if(m_pTexture)
+        		SDL_SetTextureAlphaMod(m_pTexture, a);
+        }
+
+        Color getColor() { return m_color; }
+        Uint8 getAlpha() { return m_color.a; }
 };
 
 #endif

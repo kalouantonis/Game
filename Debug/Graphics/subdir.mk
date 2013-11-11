@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Graphics/Color.cpp \
 ../Graphics/Sprite.cpp 
 
 OBJS += \
+./Graphics/Color.o \
 ./Graphics/Sprite.o 
 
 CPP_DEPS += \
+./Graphics/Color.d \
 ./Graphics/Sprite.d 
 
 
