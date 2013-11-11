@@ -28,19 +28,23 @@ class Sprite
 
     public:
         Sprite(SDL_Renderer*);
-        ~Sprite();
+        ~Sprite() {}
         
+        /**
+         * Note: Sprite will not unload texture after loading
+         */
         void loadImage(const std::string& id, const std::string& filename);
         void loadImage(const std::string& id);
 
         /**
          * Can use instead of using load method
          */
-        void setTexture(SDL_Texture* tex) { m_pTexture = tex; }
+        void setTexture(SDL_Texture* tex);
 
         // Draw the sprite with the target window
         void draw();
-        void dispose();
+        // No need for dispose
+        //void dispose();
 
         // Set height or width
         void setHeight(int h) { m_height = h;}
@@ -56,6 +60,13 @@ class Sprite
         void setX(float x) { m_position.x = x; }
         void setY(float y) { m_position.y = y; }
         void setPosition(const Vector2& pos) { m_position = pos; }
+        void setPosition(float x, float y) { m_position.x = x; m_position.y =y; }
+
+        /**
+         * Move by offset
+         */
+        void move(float x, float y);
+        void move(const Vector2& offset);
 
         // Rotation
         void setRotation(double rot) { m_rotation = rot; }
@@ -85,6 +96,9 @@ class Sprite
 
         Color getColor() { return m_color; }
         Uint8 getAlpha() { return m_color.a; }
+
+private:
+        void initTextureData();
 };
 
 #endif

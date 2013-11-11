@@ -1,5 +1,6 @@
 #include <game.h>
 #include <Utils/timer.h>
+#include <Utils/logger.h>
 
 #include <cstdlib>
 
@@ -37,6 +38,6 @@ int main(int argc, char **argv)
 	}
 	
 	SharedGame::Instance().clean();
-	
+
     return EXIT_SUCCESS;
 }

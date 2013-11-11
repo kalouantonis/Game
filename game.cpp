@@ -25,6 +25,8 @@
 using std::shared_ptr;
 #include <stdexcept>
 
+#include <SDL2/SDL_image.h>
+
 
 Game::Game()
 	: m_pWindow(nullptr)
@@ -58,7 +60,7 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 	}
 	log(DEBUG, "window creation success...\n");
 	
-	m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
+	m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
 	
 	if(m_pRenderer == nullptr)
 	{
@@ -67,16 +69,18 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 		return false;
 	}
 	
+
 	// Add renderer to texture manager
 	SharedTextureManager::Instance().attachRenderer(m_pRenderer);
 
 	// TODO: Add accesor
 	SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
 	
-	if(!g_startState)
+	StatePtr startState = GetStartState();
+	if(!startState)
 		throw std::logic_error("Must declare start state");
 
-	m_gameStateMachine.changeState(std::move(g_startState));
+	m_gameStateMachine.changeState(std::move(startState));
 
 	m_bRunning = true;
 	
@@ -114,6 +118,15 @@ void Game::clean()
 	if(m_pWindow != nullptr)
 		SDL_DestroyWindow(m_pWindow);
 	
+	log(DEBUG, "Clearing game state machine...\n");
+	m_gameStateMachine.clean();
+
+	log(DEBUG, "Removing textures...\n");
+	SharedTextureManager::Instance().clean();
+
+	// Clean up image library
+	IMG_Quit();
+
 	SDL_Quit();
 }
 

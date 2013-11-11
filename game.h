@@ -30,7 +30,7 @@
 
 typedef std::unique_ptr<GameState> StatePtr;
 // Cheap hack to get an initial start state
-extern StatePtr g_startState;
+extern StatePtr GetStartState();
 
 class Game
 {

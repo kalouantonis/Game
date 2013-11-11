@@ -16,24 +16,43 @@ Sprite::Sprite(SDL_Renderer* renderer)
 		throw std::runtime_error("Sprite::Sprite -- Invalid renderer");
 }
 
-Sprite::~Sprite()
-{
-	dispose();
-}
-
 void Sprite::loadImage(const std::string& id, const std::string& filename)
 {
 	// Load texture
 	SharedTextureManager::Instance().load(id, filename);
 
 	// Add texture to class
-	m_pTexture= SharedTextureManager::Instance().get(id);
+	loadImage(id);
 }
 
 void Sprite::loadImage(const std::string& id)
 {
 	// Error handling done in texture manager
 	m_pTexture = SharedTextureManager::Instance().get(id);
+
+	initTextureData();
+}
+
+void Sprite::setTexture(SDL_Texture* tex)
+{
+	m_pTexture = tex;
+
+	initTextureData();
+}
+
+void Sprite::initTextureData()
+{
+	if(m_pTexture)
+	{
+		// Get texture width and height
+		SDL_QueryTexture(m_pTexture, NULL, NULL, &m_width, &m_height);
+
+		// Get color mod
+		SDL_GetTextureColorMod(m_pTexture, &m_color.r, &m_color.g, &m_color.b);
+
+		// Get alpha
+		SDL_GetTextureAlphaMod(m_pTexture, &m_color.a);
+	}
 }
 
 void Sprite::rotate(double rot)
@@ -56,14 +75,13 @@ void Sprite::draw()
 	SDL_RenderCopyEx(m_pRendTarget, m_pTexture, NULL, &m_dstRect, m_rotation, NULL, SDL_FLIP_NONE);
 }
 
-void Sprite::dispose()
+void Sprite::move(const Vector2& offset)
 {
-	if(m_pTexture)
-	{
-		SDL_DestroyTexture(m_pTexture);
-
-		// Set to null to keep things clean
-		m_pTexture = nullptr;
-	}
+	m_position += offset;
 }
 
+void Sprite::move(float x, float y)
+{
+	m_position.x += x;
+	m_position.y += y;
+}
