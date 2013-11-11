@@ -9,10 +9,6 @@ class GameState
 public:
     virtual ~GameState() {}
     
-    // Init the stat(ment)
-    virtual void init() = 0;
-    virtual void clean() = 0;
-    
     // When state is first entered
     virtual bool onEnter() = 0;
     // When state exits
