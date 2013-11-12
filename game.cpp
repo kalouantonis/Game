@@ -60,7 +60,7 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 	}
 	log(DEBUG, "window creation success...\n");
 	
-	m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
+	m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	
 	if(m_pRenderer == nullptr)
 	{
