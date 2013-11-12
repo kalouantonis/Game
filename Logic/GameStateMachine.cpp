@@ -53,7 +53,7 @@ void GameStateMachine::clean()
 		assert(m_gameStates.back()->onExit() != false);
 		// Remove item
 		//delete m_gameStates.back();
-		m_gameStates.pop_back();
+		//m_gameStates.pop_back();
 	}
 
 	m_gameStates.clear();

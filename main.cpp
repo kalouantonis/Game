@@ -21,23 +21,27 @@ int main(int argc, char **argv)
 	
 	float timeSinceLastUpdate = 0.f;
 	
-	while(SharedGame::Instance().isRunning())
+	static SharedGame& instance = SharedGame::Instance();
+
+	while(instance.isRunning())
 	{
-		SharedGame::Instance().handleEvents();
+		instance.handleEvents();
 			
 		timeSinceLastUpdate += timer.restart();
 		while(timeSinceLastUpdate > DELAY_TIME)
 		{
+
 			timeSinceLastUpdate -= DELAY_TIME;
 			
-			SharedGame::Instance().update(DELAY_TIME);
-			SharedGame::Instance().handleEvents();
+			instance.update(DELAY_TIME);
+			instance.handleEvents();
 		}
-		
-		SharedGame::Instance().render();
+
+		instance.render();
 	}
 	
-	SharedGame::Instance().clean();
+	instance.clean();
+
 
     return EXIT_SUCCESS;
 }
