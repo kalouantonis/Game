@@ -41,7 +41,7 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 	int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
 	
 	// init SDL
-	if(!SDL_Init(SDL_INIT_EVERYTHING))
+	if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
 		log(ERROR, "SDL Failed to initialize: %s\n", SDL_GetError());
 		
