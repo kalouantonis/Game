@@ -4,8 +4,8 @@
 #include <SDL2/SDL_test.h>
 #include <SDL2/SDL_messagebox.h>
 
-#include "../Utils/logger.h"
-#include "../game.h"
+#include <Utils/logger.h>
+#include <game.h>
 
 InputHandler::InputHandler(void)
 	: m_bJoysticksInitialised(false)

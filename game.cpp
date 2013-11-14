@@ -54,7 +54,7 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 	
 	if(m_pWindow == nullptr)
 	{
-		log(ERROR, "Window creation failed: %s\n", SDL_GetError());	
+		log(ERROR, "Window creation failed: %s\n", SDL_GetError());
 		
 		return false;
 	}

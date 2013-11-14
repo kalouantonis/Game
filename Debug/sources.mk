@@ -30,6 +30,5 @@ Math \
 Logic \
 Input \
 Graphics \
-GO \
 ECS \
 
