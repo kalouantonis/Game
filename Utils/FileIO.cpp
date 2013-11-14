@@ -1,35 +1,66 @@
 #include "FileIO.h"
 
-FileIO::FileIO()
+FileIO::FileIO(bool buffer = false)
 {
-    __file = SDL_AllocRW();
-    BUFFER = new std::string[100];
-    std::cout << "Buffer initialized !\n";
+    init();
+
+    if(buffer == true)
+    {
+        BUFFER = new std::string;
+    }
 }
 
-void FileIO::openfile(std::string name, const char *mode)
+void FileIO::init()
+{
+   __file = SDL_AllocRW();
+   std::cout << "allocating stuff\n";
+}
+
+void FileIO::openfile(const std::string &name, const char *mode)
 {
     fname = name;
     __file = SDL_RWFromFile(name.c_str(), mode);
+    std::cout << "opening file !\n";
 }
 
-void FileIO::writetofile(std::string content)
+void FileIO::flush()
 {
-    SDL_RWwrite(__file, content.c_str(), 1, content.length());
+    if(BUFFER != NULL && __file != NULL)
+    {
+        SDL_RWwrite(__file, BUFFER->c_str(), 1, BUFFER->size());
+        BUFFER->clear();
+        std :: cout << "flushing stuff\n";
+    }
+}
+
+void FileIO::write(const std::string &content)
+{
+    if(BUFFER->size() < 1024)
+    {
+        *BUFFER += content;
+//        std:: cout << "writing stuff\n";
+    }
+    else
+    {
+        flush();
+        *BUFFER += content;
+    }
 }
 
 void FileIO::clearfile()
 {
-    __file = SDL_RWFromFile(fname.c_str(), "w");
-    SDL_RWclose(__file);
-
-    __file = SDL_RWFromFile(fname.c_str(), "a+");
+    if(__file !=NULL)
+    {
+       SDL_RWclose(__file);
+       init();
+    }
 }
 
-void FileIO::printBuffer()
+void FileIO::close()
 {
-    for( int i = 0; i < 100; i++)
+    if(BUFFER != NULL && __file != NULL)
     {
-        std::cout << i << "> " << BUFFER[i];
-    }
+        delete BUFFER;
+        SDL_RWclose(__file);
+    } 
 }

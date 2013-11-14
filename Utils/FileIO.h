@@ -11,19 +11,29 @@ class FileIO
         std::string *BUFFER;
         std::string fname;
 
-        int count, limit;
-        void flush();
+        const int limit = 100;
+        int count;
         SDL_RWops *__file;
 
     public:
-        FileIO();
-        void openfile(std::string, const char*);
-        void writetofile(std::string);
+        // constructor which takes buffer as arugment
+        FileIO(bool buffer);
+
+        // open a file and specify the mode
+        void openfile(const std::string&, const char*);
+
+        // allocate the function and open it;
+        void init();
+
+        void flush();
+
+        void write(const std::string&);
+
+        // clear the file
         void clearfile();
 
-
-        void check();
-        void printBuffer();
+        // close the file and free resources
+        void close();
 
 };
 
