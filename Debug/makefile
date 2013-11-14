@@ -15,6 +15,7 @@ RM := rm -rf
 -include Input/subdir.mk
 -include Graphics/subdir.mk
 -include GO/subdir.mk
+-include ECS/subdir.mk
 -include subdir.mk
 -include objects.mk
 
