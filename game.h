@@ -25,8 +25,8 @@
 
 #include <memory>
 
-#include <Logic/GameStateMachine.h>
-#include <Logic/GameState.h>
+#include <States/GameStateMachine.h>
+#include <States/GameState.h>
 
 typedef std::unique_ptr<GameState> StatePtr;
 // Cheap hack to get an initial start state

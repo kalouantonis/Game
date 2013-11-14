@@ -6,7 +6,7 @@
 #include <memory>
 #include <vector>
 
-#include <Logic/GameState.h>
+#include <States/GameState.h>
 
 // Queue like structure
 class GameStateMachine

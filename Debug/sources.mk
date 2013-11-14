@@ -25,9 +25,9 @@ C_UPPER_DEPS :=
 SUBDIRS := \
 . \
 Utils \
+States \
 Resources \
 Math \
-Logic \
 Input \
 Graphics \
 ECS \
