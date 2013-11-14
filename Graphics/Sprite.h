@@ -33,6 +33,7 @@ class Sprite
         /**
          * Note: Sprite will not unload texture after loading
          */
+        // TODO: Get rid of these, add them in to drawablegameobject
         void loadImage(const std::string& id, const std::string& filename);
         void loadImage(const std::string& id);
 
@@ -51,7 +52,7 @@ class Sprite
         void setWidth(int w) { m_width = w; }
         
         int getHeight() { return m_height; }
-        int setWidth() { return m_width; }
+        int getWidth() { return m_width; }
 
         const Vector2& getPosition() { return m_position; }
         float getX() { return m_position.x; }
@@ -65,6 +66,7 @@ class Sprite
         /**
          * Move by offset
          */
+        // TODO: Move these to drawablegameobject
         void move(float x, float y);
         void move(const Vector2& offset);
 
