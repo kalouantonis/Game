@@ -65,7 +65,11 @@ public:
 	
 private:
     Game();
-	Game(const Game&) {}
+	Game(const Game&)
+    : m_pWindow(nullptr)
+    , m_pRenderer(nullptr)
+    , m_bRunning(false)
+    {}
 	
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
