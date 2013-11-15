@@ -11,28 +11,27 @@
 #include <map>
 #include <ECS/Entity.h>
 
-#include <SDL2/SDL_render.h>
+#include <ECS/ISystem.h>
 
-class System
+class System: public ISystem
 {
 public:
-	System(SDL_Renderer* renderer);
+	System();
 	virtual ~System();
 
-	void addEntity(EntityPtr entity);
-	void removeEntity(const std::string& id);
-	void removeEntity(EntityPtr entity);
+	virtual void addEntity(EntityPtr entity) final;
+	virtual void removeEntity(const std::string& id) final;
+	virtual void removeEntity(EntityPtr entity) final;
 
-	virtual void initialize() = 0;
+	void getEntity(const std::string& id);
+
 	virtual void update(float dt) = 0;
 
-	virtual void render() = 0;
-
+	virtual void initialize() = 0;
 	virtual void clean();
 
 protected:
-	SDL_Renderer* m_pRenderer;
-
+	// TODO: Change to vector
 	typedef std::map<std::string, EntityPtr> EntityMap;
 	EntityMap m_entityMap;
 };

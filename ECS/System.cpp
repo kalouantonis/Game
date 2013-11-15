@@ -8,14 +8,14 @@
 #include <ECS/System.h>
 #include <cassert>
 
-System::System(SDL_Renderer* renderer)
-	: m_pRenderer(renderer)
+#include <stdexcept>
+
+System::System(): ISystem()
 {
 }
 
 System::~System()
 {
-	// TODO Auto-generated destructor stub
 }
 
 void System::addEntity(EntityPtr entity)

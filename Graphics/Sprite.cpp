@@ -5,7 +5,8 @@
 #include <Resources/TextureManager.h>
 
 Sprite::Sprite(SDL_Renderer* renderer)
-	: m_height(0), m_width(0)
+	: Component()
+	, m_height(0), m_width(0)
 	, m_position()
 	, m_rotation(0)
 	, m_pRendTarget(renderer)

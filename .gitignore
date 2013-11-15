@@ -8,3 +8,4 @@ Debug/Game
 
 Debug/.gitignore
 .settings
+/Release

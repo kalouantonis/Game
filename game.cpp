@@ -70,6 +70,8 @@ bool Game::init(const std::string& title, int xpos, int ypos, int width, int hei
 	}
 	
 
+	log(DEBUG, "Renderer creation success...\n");
+
 	// Add renderer to texture manager
 	SharedTextureManager::Instance().attachRenderer(m_pRenderer);
 
@@ -127,7 +129,10 @@ void Game::clean()
 	// Clean up image library
 	IMG_Quit();
 
+	log(DEBUG, "Quitting SDL...\n");
 	SDL_Quit();
+
+	log(DEBUG, "Game exited successfully!\n");
 }
 
 

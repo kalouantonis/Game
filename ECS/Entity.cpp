@@ -49,7 +49,7 @@ CompPtr Entity::getComponent(const std::string& id)
 	}
 	catch(std::out_of_range& e)
 	{
-		sought = NULL;
+		sought = nullptr;
 
 		log(DEBUG, "Entity::getComponent -- attempted to access invalid map object: %s\n", id.c_str());
 	}

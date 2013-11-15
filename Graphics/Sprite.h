@@ -2,14 +2,19 @@
 #define _SPRITE_H_
 
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL.h>
+//#include <SDL2/SDL.h>
 
 #include <string>
 
 #include <Math/vector2.h>
 #include <Graphics/Color.h>
 
-class Sprite
+#include <ECS/Component.h>
+
+const std::string SpriteID = "sprite";
+
+
+class Sprite: public Component
 {
     private:
         int m_height, m_width;
@@ -27,13 +32,18 @@ class Sprite
 
 
     public:
+
         Sprite(SDL_Renderer*);
         ~Sprite() {}
         
+        virtual std::string getID()
+        {
+        	return SpriteID;
+        }
+
         /**
          * Note: Sprite will not unload texture after loading
          */
-        // TODO: Get rid of these, add them in to drawablegameobject
         void loadImage(const std::string& id, const std::string& filename);
         void loadImage(const std::string& id);
 
@@ -66,7 +76,6 @@ class Sprite
         /**
          * Move by offset
          */
-        // TODO: Move these to drawablegameobject
         void move(float x, float y);
         void move(const Vector2& offset);
 
@@ -102,5 +111,7 @@ class Sprite
 private:
         void initTextureData();
 };
+
+typedef std::shared_ptr<Sprite> SpritePtr;
 
 #endif
