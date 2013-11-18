@@ -7,6 +7,8 @@
 
 #include <Physics/PositionComponent.h>
 
+const std::string PositionComponent::ID = "position";
+
 PositionComponent::PositionComponent()
 	: Component()
 	,m_position()

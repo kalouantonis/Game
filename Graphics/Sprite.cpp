@@ -4,6 +4,8 @@
 
 #include <Resources/TextureManager.h>
 
+const std::string Sprite::ID = "sprite";
+
 Sprite::Sprite(SDL_Renderer* renderer)
 	: Component()
 	, m_height(0), m_width(0)

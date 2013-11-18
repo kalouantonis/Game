@@ -22,8 +22,8 @@ void RenderSystem::addEntity(float level, EntityPtr entity)
 		level = MAX_LEVEL;
 
 	// Request sprite
-	auto pair = std::make_pair(std::dynamic_pointer_cast<Sprite>(entity->getComponent(SpriteID)),
-			std::dynamic_pointer_cast<PositionComponent>(entity->getComponent(PositionID)));
+	auto pair = std::make_pair(std::dynamic_pointer_cast<Sprite>(entity->getComponent(Sprite::ID)),
+			std::dynamic_pointer_cast<PositionComponent>(entity->getComponent(PositionComponent::ID)));
 
 	m_sprites[level][entity->getID()] = pair;
 }

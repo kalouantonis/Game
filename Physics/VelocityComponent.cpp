@@ -7,6 +7,8 @@
 
 #include <Physics/VelocityComponent.h>
 
+const std::string VelocityComponent::ID = "velocity";
+
 VelocityComponent::VelocityComponent()
 {
 	// TODO Auto-generated constructor stub

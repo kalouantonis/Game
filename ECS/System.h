@@ -31,7 +31,7 @@ public:
 	virtual void clean();
 
 protected:
-	// TODO: Change to vector
+	// TODO: Remove this, have direct pointers to components
 	typedef std::map<std::string, EntityPtr> EntityMap;
 	EntityMap m_entityMap;
 };

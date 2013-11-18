@@ -11,7 +11,6 @@
 #include <ECS/Component.h>
 #include <Math/vector2.h>
 
-const std::string PositionID = "position";
 
 class PositionComponent: public Component
 {
@@ -31,7 +30,9 @@ public:
 	void setPosition(const Vector2& vec) { m_position = vec; }
 	void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
 
-	virtual std::string getID() { return PositionID; }
+	virtual std::string getID() final { return ID; }
+
+	static const std::string ID;
 
 private:
 	Vector2 m_position;

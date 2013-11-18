@@ -11,8 +11,6 @@
 
 #include <ECS/Component.h>
 
-const std::string SpriteID = "sprite";
-
 
 class Sprite: public Component
 {
@@ -36,10 +34,9 @@ class Sprite: public Component
         Sprite(SDL_Renderer*);
         ~Sprite() {}
         
-        virtual std::string getID()
-        {
-        	return SpriteID;
-        }
+        virtual std::string getID() final { return ID; }
+
+        static const std::string ID;
 
         /**
          * Note: Sprite will not unload texture after loading

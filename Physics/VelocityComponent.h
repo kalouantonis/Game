@@ -20,6 +20,10 @@ public:
 
 	~VelocityComponent();
 
+	virtual std::string getID() final { return ID; }
+
+	static const std::string ID;
+
 private:
 	Vector2 m_velocity;
 };
