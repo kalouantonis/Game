@@ -15,7 +15,7 @@ PositionComponent::PositionComponent()
 
 }
 
-PositionComponent::PositionComponent(int x, int y)
+PositionComponent::PositionComponent(float x, float y)
 	: m_position(x, y)
 {
 

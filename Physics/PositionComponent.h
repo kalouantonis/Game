@@ -17,19 +17,19 @@ class PositionComponent: public Component
 {
 public:
 	PositionComponent();
-	PositionComponent(int x, int y);
+	PositionComponent(float x, float y);
 	PositionComponent(const Vector2& pos);
 
 	~PositionComponent();
 
-	int getX() { return m_position.x; }
-	int getY() { return m_position.y; }
+	float getX() { return m_position.x; }
+	float getY() { return m_position.y; }
 	Vector2 getPosition() { return m_position; }
 
-	void setX(int x) { m_position.x = x; }
-	void setY(int y) { m_position.y = y; }
+	void setX(float x) { m_position.x = x; }
+	void setY(float y) { m_position.y = y; }
 	void setPosition(const Vector2& vec) { m_position = vec; }
-	void setPosition(int x, int y) { m_position.x = x; m_position.y = y; }
+	void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
 
 	virtual std::string getID() { return PositionID; }
 
