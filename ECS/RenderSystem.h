@@ -10,8 +10,11 @@
 
 #include <map>
 #include <Graphics/Sprite.h>
+#include <Physics/PositionComponent.h>
 
 #include <ECS/ISystem.h>
+
+const float MAX_LEVEL = 1.f;
 
 class RenderSystem: public ISystem
 {
@@ -19,7 +22,9 @@ public:
 	RenderSystem(SDL_Renderer* renderer);
 	~RenderSystem();
 
-	virtual void addEntity(int level, EntityPtr entity) final;
+	void addEntity(float level, EntityPtr entity);
+	virtual void addEntity(EntityPtr entity) final;
+
 
 	// Will only delete first occurance of ID
 	virtual void removeEntity(const std::string& id) final;
@@ -42,8 +47,8 @@ private:
 		}
 	};
 
-	typedef std::map<std::string, SpritePtr> CompMap;
-	typedef std::map<int, CompMap, levelCompare > SpriteMap;
+	typedef std::map<std::string, std::pair<SpritePtr, PositionPtr> > CompMap;
+	typedef std::map<float, CompMap, levelCompare > SpriteMap;
 	SpriteMap m_sprites;
 };
 
