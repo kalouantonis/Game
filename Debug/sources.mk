@@ -27,6 +27,7 @@ SUBDIRS := \
 Utils \
 States \
 Resources \
+Physics \
 Math \
 Input \
 Graphics \
