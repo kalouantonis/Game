@@ -6,10 +6,12 @@
  */
 
 #include <Resources/TextureManager.h>
+#include <Utils/logger.h>
 
 #include <cassert>
 
 #include <stdexcept>
+
 
 TextureManager::TextureManager()
 	: m_pRenderer(nullptr)
@@ -48,12 +50,27 @@ void TextureManager::load(const std::string& id, const std::string& filename)
 
 SDL_Texture* TextureManager::get(const std::string& id)
 {
-	auto sought = m_textures.find(id);
+	/*auto sought = m_textures.find(id);
 
 	if(sought == m_textures.end())
 		throw std::out_of_range("TextureManager::get -- Attempted to access invalid map object");
 
-	return sought->second;
+	return sought->second;*/
+
+	SDL_Texture* sought;
+
+	try
+	{
+		sought = m_textures.at(id);
+	}
+	catch(std::out_of_range& e)
+	{
+		sought = nullptr;
+
+		log(DEBUG, "TextureManager::get -- attempted to access invalid map object: %s\n", id.c_str());
+	}
+
+	return sought;
 }
 
 bool TextureManager::exists(const std::string& id)

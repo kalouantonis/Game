@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Resources/EntityManager.cpp \
 ../Resources/TextureManager.cpp 
 
 OBJS += \
+./Resources/EntityManager.o \
 ./Resources/TextureManager.o 
 
 CPP_DEPS += \
+./Resources/EntityManager.d \
 ./Resources/TextureManager.d 
 
 
