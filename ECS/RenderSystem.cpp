@@ -15,10 +15,23 @@ RenderSystem::RenderSystem(SDL_Renderer* renderer)
 		throw std::runtime_error("RenderSystem::RenderSystem -- Invalid renderer");
 }
 
-void RenderSystem::addEntity(int level, EntityPtr entity)
+void RenderSystem::addEntity(float level, EntityPtr entity)
 {
+	if(level > MAX_LEVEL)
+		// Draw at top most level
+		level = MAX_LEVEL;
+
 	// Request sprite
-	m_sprites[level][entity->getID()] = std::dynamic_pointer_cast<Sprite>(entity->getComponent(SpriteID));
+	auto pair = std::make_pair(std::dynamic_pointer_cast<Sprite>(entity->getComponent(SpriteID)),
+			std::dynamic_pointer_cast<PositionComponent>(entity->getComponent(PositionID)));
+
+	m_sprites[level][entity->getID()] = pair;
+}
+
+void RenderSystem::addEntity(EntityPtr entity)
+{
+	// Will assume max level
+	addEntity(MAX_LEVEL, entity);
 }
 
 void RenderSystem::removeEntity(const std::string& id)
@@ -52,7 +65,9 @@ void RenderSystem::render()
 
 		for(auto cit = (*sit).second.begin(); cit != endCompIt; ++cit)
 		{
-			(*cit).second->draw();
+			auto tmpPair = (*cit).second;
+
+			tmpPair.first->draw(tmpPair.second->getPosition());
 		}
 	}
 }

@@ -7,7 +7,7 @@
 Sprite::Sprite(SDL_Renderer* renderer)
 	: Component()
 	, m_height(0), m_width(0)
-	, m_position()
+	//, m_position()
 	, m_rotation(0)
 	, m_pRendTarget(renderer)
 	, m_pTexture(nullptr)
@@ -66,23 +66,33 @@ void Sprite::rotate(double rot)
 		m_rotation = 360;
 }
 
-void Sprite::draw()
+void Sprite::draw(const Vector2& position)
 {
 	m_dstRect.h = m_height;
 	m_dstRect.w = m_width;
-	m_dstRect.x = m_position.x;
-	m_dstRect.y = m_position.y;
+	m_dstRect.x = position.x;
+	m_dstRect.y = position.y;
 
 	SDL_RenderCopyEx(m_pRendTarget, m_pTexture, NULL, &m_dstRect, m_rotation, NULL, SDL_FLIP_NONE);
 }
 
-void Sprite::move(const Vector2& offset)
+void Sprite::draw(int x, int y)
 {
-	m_position += offset;
+	m_dstRect.h = m_height;
+	m_dstRect.w = m_width;
+	m_dstRect.x = x;
+	m_dstRect.y = y;
+
+	SDL_RenderCopyEx(m_pRendTarget, m_pTexture, NULL, &m_dstRect, m_rotation, NULL, SDL_FLIP_NONE);
 }
 
-void Sprite::move(float x, float y)
+//void Sprite::move(const Vector2& offset)
+//{
+//	m_position += offset;
+//}
+
+/*void Sprite::move(float x, float y)
 {
 	m_position.x += x;
 	m_position.y += y;
-}
+}*/

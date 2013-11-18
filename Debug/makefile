@@ -11,6 +11,7 @@ RM := rm -rf
 -include Utils/subdir.mk
 -include States/subdir.mk
 -include Resources/subdir.mk
+-include Physics/subdir.mk
 -include Math/subdir.mk
 -include Input/subdir.mk
 -include Graphics/subdir.mk

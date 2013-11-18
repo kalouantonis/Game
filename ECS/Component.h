@@ -13,7 +13,6 @@
 class Component
 {
 public:
-	virtual ~Component();
 
 	virtual std::string getID() = 0;
 };

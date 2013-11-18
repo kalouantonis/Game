@@ -18,7 +18,7 @@ class Sprite: public Component
 {
     private:
         int m_height, m_width;
-        Vector2 m_position;
+        //Vector2 m_position;
         double m_rotation;
         
 		Color m_color;
@@ -53,7 +53,8 @@ class Sprite: public Component
         void setTexture(SDL_Texture* tex);
 
         // Draw the sprite with the target window
-        void draw();
+        void draw(const Vector2& position);
+        void draw(int x, int y);
         // No need for dispose
         //void dispose();
 
@@ -64,20 +65,20 @@ class Sprite: public Component
         int getHeight() { return m_height; }
         int getWidth() { return m_width; }
 
-        const Vector2& getPosition() { return m_position; }
-        float getX() { return m_position.x; }
-        float getY() { return m_position.y; }
+        //const Vector2& getPosition() { return m_position; }
+        //float getX() { return m_position.x; }
+        //float getY() { return m_position.y; }
 
-        void setX(float x) { m_position.x = x; }
-        void setY(float y) { m_position.y = y; }
-        void setPosition(const Vector2& pos) { m_position = pos; }
-        void setPosition(float x, float y) { m_position.x = x; m_position.y =y; }
+        //void setX(float x) { m_position.x = x; }
+        //void setY(float y) { m_position.y = y; }
+        //void setPosition(const Vector2& pos) { m_position = pos; }
+        //void setPosition(float x, float y) { m_position.x = x; m_position.y =y; }
 
         /**
          * Move by offset
          */
-        void move(float x, float y);
-        void move(const Vector2& offset);
+        //void move(float x, float y);
+        //void move(const Vector2& offset);
 
         // Rotation
         void setRotation(double rot) { m_rotation = rot; }
