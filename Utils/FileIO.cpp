@@ -1,55 +1,70 @@
 #include "FileIO.h"
 
-FileIO::FileIO(bool buffer = false)
+FileIO::FileIO()
 {
     init();
-
-    if(buffer == true)
-    {
-        BUFFER = new std::string;
-    }
+    isopened = false;
 }
 
 void FileIO::init()
 {
    __file = SDL_AllocRW();
-   std::cout << "allocating stuff\n";
 }
 
 void FileIO::openfile(const std::string &name, const char *mode)
 {
+    if(isopened == true)
+    {
+        close();
+    }
+
     fname = name;
     __file = SDL_RWFromFile(name.c_str(), mode);
-    std::cout << "opening file !\n";
 }
 
 void FileIO::flush()
 {
-    if(BUFFER != NULL && __file != NULL)
+    if(__file != NULL)
     {
-        SDL_RWwrite(__file, BUFFER->c_str(), 1, BUFFER->size());
-        BUFFER->clear();
-        std :: cout << "flushing stuff\n";
+        SDL_RWwrite(__file, BUFFER.c_str(), 1, BUFFER.size());
+        BUFFER.clear();
     }
 }
 
 void FileIO::write(const std::string &content)
 {
-    if(BUFFER->size() < 1024)
+    if(BUFFER.size() < BLIMIT)
     {
-        *BUFFER += content;
-//        std:: cout << "writing stuff\n";
+        BUFFER += content;
     }
     else
     {
         flush();
-        *BUFFER += content;
+        write(content);
     }
+}
+
+std::string FileIO::read()
+{
+    char *ptr = NULL;
+    std::string content = "";
+
+    if(isopened == true)
+    {
+        SDL_RWread(__file, ptr, 1024 * 8, 1);
+        content = ptr;
+    }
+    else
+    {
+        std::cerr << "file is not opened!\n";
+    }
+    
+    return content;
 }
 
 void FileIO::clearfile()
 {
-    if(__file !=NULL)
+    if(__file != NULL)
     {
        SDL_RWclose(__file);
        init();
@@ -58,9 +73,7 @@ void FileIO::clearfile()
 
 void FileIO::close()
 {
-    if(BUFFER != NULL && __file != NULL)
-    {
-        delete BUFFER;
-        SDL_RWclose(__file);
-    } 
-}
+    fname = "";
+    SDL_RWclose(__file);
+    isopened = false;       
+    __file = NULL; }
