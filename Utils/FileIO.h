@@ -8,16 +8,17 @@
 class FileIO
 {
     private:
-        std::string *BUFFER;
+        std::string BUFFER;
         std::string fname;
 
-        const int limit = 100;
-        int count;
+        const unsigned int BLIMIT = 1024;
         SDL_RWops *__file;
+        
+        bool isopened;
 
     public:
         // constructor which takes buffer as arugment
-        FileIO(bool buffer);
+        FileIO();
 
         // open a file and specify the mode
         void openfile(const std::string&, const char*);
@@ -25,15 +26,23 @@ class FileIO
         // allocate the function and open it;
         void init();
 
+        // write the buffer's content to file when
+        // it's full
         void flush();
 
         void write(const std::string&);
+        std::string read();
 
         // clear the file
         void clearfile();
 
         // close the file and free resources
         void close();
+        
+        // check if there's a file opened or
+        // return it's name
+        bool isOpened() { return isopened; } 
+        std::string checkfname() { return fname; }
 
 };
 
